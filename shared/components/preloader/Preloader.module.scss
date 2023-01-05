@@ -1,0 +1,25 @@
+@import 'styles/global';
+
+.wrapper {
+  margin-top: toRem(100);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preloader {
+  width: toRem(60);
+  height: toRem(60);
+  border-radius: 50%;
+  border: toRem(7) solid #fff;
+  border-left-color: $color-4;
+  border-top-color: $color-4;
+  border-right-color: $color-4;
+  animation: loader 1.3s linear infinite;
+}
+@keyframes loader {
+  100% {
+    transform: rotate(360deg);
+  }
+}

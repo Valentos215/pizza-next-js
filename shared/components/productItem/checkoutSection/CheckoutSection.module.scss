@@ -1,0 +1,105 @@
+@import 'styles/global';
+
+.checkout {
+  margin-top: toRem(20);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &__amount {
+    font-size: toRem(18);
+    font-weight: 600;
+    margin-left: toRem(10);
+    & span {
+      font-size: toRem(11);
+    }
+  }
+  &__tocartButton {
+    height: toRem(50);
+    width: toRem(140);
+    font-size: toRem(17);
+    letter-spacing: toRem(2);
+    font-weight: 600;
+    line-height: toRem(50);
+    text-align: center;
+    border-radius: toRem(15);
+    overflow: hidden;
+    color: #fff;
+    background: $color-4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      @media (min-width: 769px) {
+        background-color: $color-5;
+      }
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  &__count {
+    width: toRem(140);
+    height: toRem(50);
+    overflow: hidden;
+    border-radius: toRem(15);
+    border: 1px solid $color-9;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &_button {
+      position: relative;
+      width: toRem(50);
+      height: toRem(50);
+      border-radius: toRem(15);
+      overflow: hidden;
+      border: 1px solid $color-9;
+      cursor: pointer;
+      &:hover {
+        @media (min-width: 769px) {
+          background-color: $color-9;
+        }
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+      &.minus {
+        &:before {
+          content: '';
+          position: absolute;
+          top: toRem(23);
+          left: toRem(16);
+          height: toRem(3);
+          width: toRem(15);
+          background: $color-3;
+        }
+      }
+      &.plus {
+        &:before {
+          content: '';
+          position: absolute;
+          top: toRem(23);
+          left: toRem(17);
+          height: toRem(3);
+          width: toRem(15);
+          background: $color-3;
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          top: toRem(16.5);
+          left: toRem(23);
+          height: toRem(15);
+          width: toRem(3);
+          background: $color-3;
+        }
+      }
+    }
+    & span {
+      flex: 1 0 auto;
+      font-size: toRem(18);
+      font-weight: 700;
+      color: $color-3;
+      text-align: center;
+    }
+  }
+}

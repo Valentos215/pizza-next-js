@@ -1,0 +1,117 @@
+@import 'styles/global';
+
+.cart {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  background-color: $color-2;
+  height: toRem(50);
+  border-radius: toRem(25);
+  font-weight: 700;
+  padding: toRem(2);
+  @media (max-width: 768px) {
+    display: none;
+  }
+  &.small {
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+}
+.viewer {
+  display: flex;
+  cursor: pointer;
+  &:hover {
+    @media (min-width: 769px) {
+      & div {
+        background-color: $color-1;
+      }
+      & label {
+        color: $color-1;
+      }
+    }
+  }
+}
+.counter {
+  position: relative;
+  height: toRem(46);
+  width: toRem(46);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-3;
+  transition: all 0.3s ease;
+  & span {
+    margin-top: toRem(6);
+    color: $color-2;
+  }
+  & img {
+    margin-top: toRem(4);
+    height: toRem(16);
+    width: toRem(16);
+    filter: invert(100%);
+  }
+}
+.amount {
+  color: $color-3;
+  line-height: toRem(50);
+  text-align: center;
+  width: toRem(120);
+  margin-right: toRem(-4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.checkout {
+  text-align: center;
+  width: toRem(145);
+  height: toRem(46);
+  border-radius: toRem(23);
+  overflow: hidden;
+  background-color: $color-4;
+  margin-left: toRem(4);
+  line-height: toRem(46);
+  color: $color-2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    @media (min-width: 769px) {
+      background-color: $color-5;
+    }
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &.disabled {
+    &:hover {
+      @media (min-width: 769px) {
+        background-color: $color-3;
+        cursor: no-drop;
+      }
+    }
+  }
+}
+.expand {
+  position: absolute;
+  background-color: #fff;
+  top: toRem(55);
+  width: toRem(312);
+  border-radius: toRem(25);
+  box-shadow: 0rem 0rem toRem(5) $color-1;
+  transition: all 0.5s;
+  overflow: auto;
+  max-height: 0rem;
+  opacity: 0;
+  &.active {
+    max-height: toRem(430);
+    opacity: 1;
+  }
+  &__item {
+    border-bottom: 1px solid $color-6;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

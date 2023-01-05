@@ -1,0 +1,191 @@
+@import 'styles/global';
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: toRem(12);
+  font-weight: 600;
+  padding: toRem(10);
+  margin-left: toRem(10);
+  &__head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    & h3 {
+      margin-top: toRem(10);
+      letter-spacing: toRem(0.4);
+      margin-bottom: toRem(15);
+      font-size: toRem(15);
+      font-weight: 600;
+      color: $color-1;
+    }
+    & span {
+      flex: 0 0 toRem(30);
+      height: toRem(30);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid $color-8;
+      position: relative;
+      transition: all 0.2s;
+      cursor: pointer;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        height: toRem(16);
+        width: toRem(2);
+        background: $color-10;
+        transform: rotate(45deg);
+        top: toRem(6);
+        right: toRem(13);
+      }
+      &:after {
+        transform: rotate(-45deg);
+      }
+      &:hover {
+        @media (min-width: 769px) {
+          background: $color-9;
+          &:before,
+          &:after {
+            background: $color-4;
+          }
+        }
+      }
+      &:active {
+        scale: 0.9;
+      }
+    }
+  }
+  &__ingredients {
+    letter-spacing: toRem(0.5);
+    margin-bottom: toRem(10);
+    color: $color-3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    & div {
+      color: $color-1;
+      font-size: toRem(14);
+      line-height: toRem(20);
+      border-radius: toRem(10);
+      overflow: hidden;
+      margin-bottom: toRem(5);
+      margin-right: toRem(5);
+      background: $color-9;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      &.last {
+        color: inherit;
+        padding: 0 toRem(7);
+      }
+      & p {
+        margin: 0 toRem(7);
+      }
+      & span {
+        display: block;
+        position: relative;
+        right: toRem(1);
+        top: toRem(1);
+        border-radius: 50%;
+        overflow: hidden;
+        height: toRem(18);
+        width: toRem(18);
+        background: $color-4;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          height: toRem(10);
+          width: toRem(2);
+          background: #fff;
+          transform: rotate(45deg);
+          left: toRem(8);
+          top: toRem(4);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+        &:hover {
+          @media (min-width: 769px) {
+            background: $color-5;
+          }
+        }
+        &:active {
+          scale: 0.9;
+        }
+      }
+    }
+  }
+  &__specification {
+    font-size: toRem(13);
+    letter-spacing: toRem(0.5);
+    margin-bottom: toRem(10);
+    color: $color-1;
+  }
+  &__total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &_amount {
+      flex: 1 0 auto;
+      font-size: toRem(16);
+      font-weight: 600;
+      color: $color-1;
+      & span {
+        font-size: toRem(11);
+      }
+    }
+    &_counter {
+      width: toRem(90);
+      height: toRem(30);
+      background: $color-4;
+      border-radius: toRem(15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      & p {
+        flex: 1 0 auto;
+        color: #fff;
+        text-align: center;
+        line-height: toRem(29);
+      }
+      & span {
+        width: toRem(30);
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid $color-8;
+        position: relative;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover {
+          @media (min-width: 769px) {
+            background: $color-5;
+          }
+        }
+        &:active {
+          scale: 0.9;
+        }
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          height: toRem(2);
+          width: toRem(14);
+          background: #fff;
+          top: toRem(13);
+          left: toRem(7);
+        }
+        &.plus {
+          &:after {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+  }
+}

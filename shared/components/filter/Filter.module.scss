@@ -1,0 +1,138 @@
+@import 'styles/global';
+
+.filter {
+  width: toRem(250);
+  position: relative;
+  justify-self: flex-start;
+}
+.button {
+  height: toRem(30);
+  padding: 0 toRem(5);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: toRem(15);
+  overflow: hidden;
+  border: 1px solid $color-3;
+  cursor: pointer;
+  & span {
+    font-weight: 600;
+    color: $color-3;
+    flex: 1 0 auto;
+    text-align: center;
+  }
+  & img {
+    height: toRem(24);
+    filter: brightness(0);
+  }
+}
+.options {
+  overflow: hidden;
+  min-width: 100%;
+  border-radius: toRem(15);
+  box-shadow: 0 0 toRem(5) $color-3;
+  position: absolute;
+  top: toRem(33);
+  z-index: 3;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  max-height: 0rem;
+  opacity: 0;
+  &.active {
+    max-height: toRem(300);
+    opacity: 1;
+    cursor: pointer;
+    overflow: auto;
+  }
+}
+.item {
+  border-radius: toRem(15);
+  overflow: hidden;
+}
+.option {
+  white-space: nowrap;
+  font-size: toRem(16);
+  line-height: toRem(50);
+  border-radius: toRem(15);
+  overflow: hidden;
+  color: $color-3;
+  display: flex;
+  align-items: center;
+  padding: 0 toRem(15);
+  &:hover {
+    @media (min-width: 769px) {
+      background-color: $color-9;
+    }
+  }
+  & p {
+    margin-left: toRem(10);
+  }
+}
+
+.checkbox {
+  position: relative;
+  display: block;
+  width: toRem(25);
+  height: toRem(25);
+  border-radius: toRem(5);
+  overflow: hidden;
+  background-color: $color-4;
+  &__check {
+    &:before {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: toRem(2);
+      height: toRem(8);
+      left: toRem(7);
+      top: toRem(10);
+      transform: rotate(-45deg);
+      transition: all 0.2s ease 0s;
+      opacity: 0;
+    }
+    &:after {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: toRem(2);
+      height: toRem(15);
+      right: toRem(8);
+      top: toRem(5);
+      transform: rotate(45deg);
+      transition: all 0.2s ease 0s;
+      opacity: 0;
+    }
+    &_checked {
+      &:before {
+        opacity: 1;
+      }
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+  &__denial {
+    &:before,
+    &:after {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: toRem(2);
+      height: toRem(18.5);
+      top: toRem(3.5);
+      left: toRem(11.5);
+      transform: rotate(-45deg);
+      transition: all 0.2s;
+      opacity: 0;
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+    &_unchecked {
+      &:before,
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+}
