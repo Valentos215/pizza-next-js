@@ -18,7 +18,9 @@ const Header = () => {
   const { asPath } = useRouter();
 
   const linkClassName = (path: string) => {
-    if (path === asPath) return `${s.nav__link} ${s.active}`;
+    if (path === asPath) {
+      return `${s.nav__link} ${s.active}`;
+    }
     return s.nav__link;
   };
 
