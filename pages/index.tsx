@@ -79,9 +79,7 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
 }
 
 export async function getStaticProps() {
-  const response = await axios.get(
-    "https://63270a7aba4a9c47532f8ff3.mockapi.io/api/v1/pizza"
-  );
+  const response = await axios.get(process.env.REACT_APP_BASE_URL + "pizza");
   const pizzas = response.data;
 
   return {

@@ -6,11 +6,20 @@ const useLocalStorage = (
   key: string,
   initialValue: string = ""
 ): TUseLocalStorageOutput => {
-  const [value, setValue] = useState<string>(() => {
-    if (typeof window !== "undefined")
-      return localStorage.getItem(key) || initialValue;
-    else return initialValue;
-  });
+  const [value, setValue] = useState<string>(initialValue);
+  const [item, setItem] = useState("");
+
+  useEffect(() => {
+    if (!localStorage.getItem(key)) return;
+    setItem(localStorage.getItem(key) || "");
+  }, []);
+
+  useEffect(() => {
+    if (!item) {
+      return;
+    }
+    setValue(item);
+  }, [item]);
 
   useEffect(() => {
     localStorage.setItem(key, value);
@@ -20,3 +29,9 @@ const useLocalStorage = (
 };
 
 export default useLocalStorage;
+
+// () => {
+// 	if (typeof window !== "undefined")
+// 	  return localStorage.getItem(key) || initialValue;
+// 	else return initialValue;
+//  }
