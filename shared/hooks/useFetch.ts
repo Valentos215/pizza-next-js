@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 
-import axios from 'axios';
+import axios from "axios";
 
 type RespType = {
   id: number;
@@ -18,7 +18,7 @@ type RespType = {
 
 type Options =
   | {
-      method: 'get' | 'post' | 'put' | 'delete';
+      method: "get" | "post" | "put" | "delete";
       data: FormData;
     }
   | {};

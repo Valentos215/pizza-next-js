@@ -1,23 +1,27 @@
-import { useContext, memo } from 'react';
+import { useContext, memo } from "react";
 
-import { CartContext } from 'contexts/cartContext';
-import Show from 'shared/components/show/Show';
-import { minusItem, plusItem } from 'utils/utils';
-import { ICartItem } from 'shared/components/cartItem/utils/cartItem.utils';
+import { CartContext } from "contexts/cartContext";
+import Show from "shared/components/show/Show";
+import { minusItem, plusItem } from "utils/utils";
+import { ICartItem } from "shared/components/cartItem/utils/cartItem.utils";
 
-import s from 'shared/components/productItem/checkoutSection/CheckoutSection.module.scss';
+import s from "shared/components/productItem/checkoutSection/CheckoutSection.module.scss";
 
 interface ICheckoutSectionProps {
   currentItem: ICartItem;
 }
 
-const CheckoutSection = memo(({ currentItem }: ICheckoutSectionProps) => {
-  const { id, title, img, size, crust, ingredients, amount, number } = currentItem;
+const CheckoutSection = ({ currentItem }: ICheckoutSectionProps) => {
+  const { id, title, img, size, crust, ingredients, amount, number } =
+    currentItem;
   const [cart, setCart] = useContext(CartContext);
 
   const onCartClick = () => {
     if (crust) {
-      setCart([...cart, { id, title, img, size, crust, ingredients, number: 1, amount }]);
+      setCart([
+        ...cart,
+        { id, title, img, size, crust, ingredients, number: 1, amount },
+      ]);
     } else {
       setCart([...cart, { id, title, img, size, number: 1, amount }]);
     }
@@ -42,7 +46,7 @@ const CheckoutSection = memo(({ currentItem }: ICheckoutSectionProps) => {
             onClick={() => minusItem(setCart, currentItem)}
             className={`${s.checkout__count_button} ${s.minus}`}
           />
-          <span>{('0' + currentItem.number).slice(-2)}</span>
+          <span>{("0" + currentItem.number).slice(-2)}</span>
           <div
             onClick={() => plusItem(setCart, currentItem)}
             className={`${s.checkout__count_button} ${s.plus}`}
@@ -51,6 +55,6 @@ const CheckoutSection = memo(({ currentItem }: ICheckoutSectionProps) => {
       </Show>
     </div>
   );
-});
+};
 
 export default CheckoutSection;

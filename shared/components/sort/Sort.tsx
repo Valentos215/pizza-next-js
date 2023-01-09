@@ -1,15 +1,16 @@
-import { useState, memo } from 'react';
+import { useState, memo } from "react";
 
-import sortLogo from 'assets/Sort.svg';
+import sortLogo from "assets/Sort.svg";
 
-import s from './Sort.module.scss';
+import s from "./Sort.module.scss";
+import Image from "next/image";
 
 interface ISortProps {
   sortCriteria: string[];
   setSort: (value: number) => void;
 }
 
-const Sort = memo(({ sortCriteria, setSort }: ISortProps) => {
+const Sort = ({ sortCriteria, setSort }: ISortProps) => {
   const [expanded, setExpanded] = useState(false);
 
   const itemClick = (optionNum: number) => {
@@ -26,7 +27,7 @@ const Sort = memo(({ sortCriteria, setSort }: ISortProps) => {
     <div className={s.sort} tabIndex={3} onBlur={() => setExpanded(false)}>
       <div className={s.button} onClick={() => setExpanded(!expanded)}>
         <span>Sort</span>
-        <img src={sortLogo} alt=""></img>
+        <Image src={sortLogo} alt="" />
       </div>
       <div className={expandClassName}>
         {sortCriteria &&
@@ -38,6 +39,6 @@ const Sort = memo(({ sortCriteria, setSort }: ISortProps) => {
       </div>
     </div>
   );
-});
+};
 
 export default Sort;

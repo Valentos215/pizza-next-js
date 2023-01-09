@@ -1,0 +1,54 @@
+@import 'styles/global';
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: toRem(70);
+}
+.title {
+  margin-top: toRem(20);
+  font-size: toRem(22);
+  line-height: toRem(28);
+  font-weight: 600;
+  text-align: center;
+  margin-left: toRem(10);
+}
+.invert {
+  background: $color-4;
+  color: #fff;
+  border-radius: toRem(15);
+  box-shadow: 0 0 toRem(2) $color-10;
+  font-size: toRem(16);
+  width: toRem(50);
+  line-height: toRem(20);
+  padding: 0 toRem(10);
+  cursor: pointer;
+  &:hover {
+    @media (min-width: 769px) {
+      background-color: $color-5;
+    }
+  }
+}
+.filters {
+  top: toRem(50);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: toRem(40);
+  @media (max-width: 768px) {
+    margin-top: toRem(15);
+  }
+}
+.pizzaItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(toRem(276), 1fr));
+  column-gap: toRem(20);
+  row-gap: toRem(20);
+  margin-bottom: toRem(50);
+  margin-top: toRem(40);
+  align-items: flex-start;
+  @media (max-width: 768px) {
+    margin-top: toRem(20);
+  }
+}

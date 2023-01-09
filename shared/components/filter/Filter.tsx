@@ -1,10 +1,14 @@
-import { useEffect, memo, useState } from 'react';
+import { useEffect, memo, useState } from "react";
 
-import filterLogo from 'assets/Filter.svg';
-import Show from 'shared/components/show/Show';
-import { checkboxClasses, checkboxClick } from 'shared/components/filter/utils/filter.utils';
+import filterLogo from "assets/Filter.svg";
+import Show from "shared/components/show/Show";
+import {
+  checkboxClasses,
+  checkboxClick,
+} from "shared/components/filter/utils/filter.utils";
 
-import s from 'shared/components/filter/Filter.module.scss';
+import s from "shared/components/filter/Filter.module.scss";
+import Image from "next/image";
 
 interface IFilterProps {
   title?: string;
@@ -13,7 +17,7 @@ interface IFilterProps {
   invert: number;
 }
 
-const Filter = memo(({ title, specification, setFilter, invert }: IFilterProps) => {
+const Filter = ({ title, specification, setFilter, invert }: IFilterProps) => {
   const [expanded, setExpanded] = useState(false);
   const [checked, setChecked] = useState<string[]>([]);
 
@@ -36,8 +40,8 @@ const Filter = memo(({ title, specification, setFilter, invert }: IFilterProps) 
           setExpanded(!expanded);
         }}
       >
-        <span>{title ? title : 'Filter'}</span>
-        <img src={filterLogo} alt="" />
+        <span>{title ? title : "Filter"}</span>
+        <Image src={filterLogo} alt="" />
       </div>
       <div className={expandedClassName}>
         <Show condition={!!specification}>
@@ -45,9 +49,13 @@ const Filter = memo(({ title, specification, setFilter, invert }: IFilterProps) 
             <div
               key={option}
               className={s.option}
-              onClick={() => checkboxClick({ option, checked, expanded, setChecked })}
+              onClick={() =>
+                checkboxClick({ option, checked, expanded, setChecked })
+              }
             >
-              <span className={checkboxClasses({ invert, option, checked, s })} />
+              <span
+                className={checkboxClasses({ invert, option, checked, s })}
+              />
               <p>{option.charAt(0).toUpperCase() + option.slice(1)}</p>
             </div>
           ))}
@@ -55,6 +63,6 @@ const Filter = memo(({ title, specification, setFilter, invert }: IFilterProps) 
       </div>
     </div>
   );
-});
+};
 
 export default Filter;

@@ -1,21 +1,25 @@
-import { useContext, useState, memo } from 'react';
+import { useContext, useState, memo } from "react";
 
-import cartLogo from 'assets/Cart.svg';
-import { CartContext } from 'contexts/cartContext';
-import Show from 'shared/components/show/Show';
-import CheckoutSection from 'shared/components/productItem/checkoutSection/CheckoutSection';
-import { ICartItem } from 'shared/components/cartItem/utils/cartItem.utils';
-import { PIZZA_SIZES, PIZZA_CRUSTS, PIZZA_WEIGHT } from 'constants/index';
-import { IPizza } from 'pages/pizza/utils/pizza.utils';
-import { getAmount, getCount } from 'shared/components/productItem/utils/pizzaItem.utils';
+import cartLogo from "assets/Cart.svg";
+import { CartContext } from "contexts/cartContext";
+import Show from "shared/components/show/Show";
+import CheckoutSection from "shared/components/productItem/checkoutSection/CheckoutSection";
+import { ICartItem } from "shared/components/cartItem/utils/cartItem.utils";
+import { PIZZA_SIZES, PIZZA_CRUSTS, PIZZA_WEIGHT } from "constants/index";
+import { IPizza } from "utils/pizza.utils";
+import {
+  getAmount,
+  getCount,
+} from "shared/components/productItem/utils/pizzaItem.utils";
 
-import s from 'shared/components/productItem/ProductItem.module.scss';
+import s from "shared/components/productItem/ProductItem.module.scss";
+import Image from "next/image";
 
 interface IPizzaItemProps {
   pizza: IPizza;
 }
 
-const PizzaItem = memo(({ pizza }: IPizzaItemProps) => {
+const PizzaItem = ({ pizza }: IPizzaItemProps) => {
   const { img, title, ingredients, description, baseCost } = pizza;
   const [currentSize, setCurrentSize] = useState(PIZZA_SIZES[0]);
   const [currentCrust, setCurrentCrust] = useState(PIZZA_CRUSTS[0]);
@@ -58,14 +62,21 @@ const PizzaItem = memo(({ pizza }: IPizzaItemProps) => {
     }
   };
 
-  const sizeClassName = (size: string) => (size === currentSize ? s.size__checked : '');
+  const sizeClassName = (size: string) =>
+    size === currentSize ? s.size__checked : "";
 
   return (
     <div className={s.wrapper}>
       <div className={s.image}>
-        <img className={s.image__main} src={img} alt="" />
+        <Image
+          className={s.image__main}
+          src={img}
+          alt=""
+          width="200"
+          height="200"
+        />
         <Show condition={pizzaInCart}>
-          <img className={s.image__cartLogo} src={cartLogo} alt="" />
+          <Image className={s.image__cartLogo} src={cartLogo} alt="" />
         </Show>
         <span>{PIZZA_WEIGHT[PIZZA_SIZES.indexOf(currentSize)]}g</span>
       </div>
@@ -74,19 +85,27 @@ const PizzaItem = memo(({ pizza }: IPizzaItemProps) => {
         <Show condition={!!description}>
           <span>({description}), </span>
         </Show>
-        {ingredients.join(', ')}
+        {ingredients.join(", ")}
         <p>You can remove some ingredients at checkout</p>
       </div>
       <div className={s.size}>
         {PIZZA_SIZES.map((size) => (
-          <span key={size} onClick={() => onSizeClick(size)} className={sizeClassName(size)}>
+          <span
+            key={size}
+            onClick={() => onSizeClick(size)}
+            className={sizeClassName(size)}
+          >
             {size}
           </span>
         ))}
       </div>
       <div className={s.crust}>
         {PIZZA_CRUSTS.map((crust) => (
-          <span key={crust} onClick={() => onCrustClick(crust)} className={crustClasses(crust)}>
+          <span
+            key={crust}
+            onClick={() => onCrustClick(crust)}
+            className={crustClasses(crust)}
+          >
             {crust}
           </span>
         ))}
@@ -95,6 +114,6 @@ const PizzaItem = memo(({ pizza }: IPizzaItemProps) => {
       <CheckoutSection currentItem={currentItem} />
     </div>
   );
-});
+};
 
 export default PizzaItem;

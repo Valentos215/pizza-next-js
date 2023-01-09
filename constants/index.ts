@@ -1,5 +1,5 @@
 export const NAV_MENU = [
-  { title: "Pizza", link: "pizza" },
+  { title: "Pizza", link: "/" },
   { title: "Drinks", link: "drinks" },
   { title: "Sides", link: "sides" },
   { title: "Dessert", link: "dessert" },

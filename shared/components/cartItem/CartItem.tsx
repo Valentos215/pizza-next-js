@@ -1,18 +1,18 @@
-import { useContext, memo } from 'react';
+import { useContext, memo } from "react";
 
-import { CartContext } from 'contexts/cartContext';
-import Show from 'shared/components/show/Show';
-import { removeItem, minusItem, plusItem, removeIngredient } from 'utils/utils';
-import { ICartItem } from 'shared/components/cartItem/utils/cartItem.utils';
+import { CartContext } from "contexts/cartContext";
+import Show from "shared/components/show/Show";
+import { removeItem, minusItem, plusItem, removeIngredient } from "utils/utils";
+import { ICartItem } from "shared/components/cartItem/utils/cartItem.utils";
 
-import s from 'shared/components/cartItem/CartItem.module.scss';
+import s from "shared/components/cartItem/CartItem.module.scss";
 
 interface ICartItemProps {
   item: ICartItem;
   handle?: boolean;
 }
 
-const CartItem = memo(({ item, handle = false }: ICartItemProps) => {
+const CartItem = ({ item, handle = false }: ICartItemProps) => {
   const [, setCart] = useContext(CartContext);
 
   const itemTotalAmount = item.amount * item.number;
@@ -25,7 +25,7 @@ const CartItem = memo(({ item, handle = false }: ICartItemProps) => {
       </div>
       {!!item.ingredients && (
         <div className={s.item__ingredients}>
-          <Show condition={!handle}>{item.ingredients.join(', ')}</Show>
+          <Show condition={!handle}>{item.ingredients.join(", ")}</Show>
           <Show condition={handle && item.ingredients.length > 1}>
             {item.ingredients.map((ing) => (
               <div key={ing}>
@@ -55,6 +55,6 @@ const CartItem = memo(({ item, handle = false }: ICartItemProps) => {
       </div>
     </div>
   );
-});
+};
 
 export default CartItem;

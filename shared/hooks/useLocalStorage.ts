@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 type TUseLocalStorageOutput = [string, (value: string) => void];
 
-const useLocalStorage = (key: string, initialValue: string = ''): TUseLocalStorageOutput => {
+const useLocalStorage = (
+  key: string,
+  initialValue: string = ""
+): TUseLocalStorageOutput => {
   const [value, setValue] = useState<string>(() => {
-    return localStorage.getItem(key) || initialValue;
+    if (typeof window !== "undefined")
+      return localStorage.getItem(key) || initialValue;
+    else return initialValue;
   });
 
   useEffect(() => {
