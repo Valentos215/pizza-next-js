@@ -1,6 +1,5 @@
 import { useContext, useState, memo } from "react";
 
-import cartLogo from "assets/Cart.svg";
 import { CartContext } from "contexts/cartContext";
 import Show from "shared/components/show/Show";
 import CheckoutSection from "shared/components/productItem/checkoutSection/CheckoutSection";
@@ -72,11 +71,17 @@ const PizzaItem = ({ pizza }: IPizzaItemProps) => {
           className={s.image__main}
           src={img}
           alt=""
-          width="200"
-          height="200"
+          width={960}
+          height={619}
         />
         <Show condition={pizzaInCart}>
-          <Image className={s.image__cartLogo} src={cartLogo} alt="" />
+          <Image
+            className={s.image__cartLogo}
+            src="/Cart.svg"
+            alt=""
+            height={18}
+            width={18}
+          />
         </Show>
         <span>{PIZZA_WEIGHT[PIZZA_SIZES.indexOf(currentSize)]}g</span>
       </div>

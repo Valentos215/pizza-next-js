@@ -29,9 +29,3 @@ const useLocalStorage = (
 };
 
 export default useLocalStorage;
-
-// () => {
-// 	if (typeof window !== "undefined")
-// 	  return localStorage.getItem(key) || initialValue;
-// 	else return initialValue;
-//  }

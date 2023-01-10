@@ -1,7 +1,5 @@
 import { useState, memo } from "react";
 
-import sortLogo from "assets/Sort.svg";
-
 import s from "./Sort.module.scss";
 import Image from "next/image";
 
@@ -27,7 +25,7 @@ const Sort = ({ sortCriteria, setSort }: ISortProps) => {
     <div className={s.sort} tabIndex={3} onBlur={() => setExpanded(false)}>
       <div className={s.button} onClick={() => setExpanded(!expanded)}>
         <span>Sort</span>
-        <Image src={sortLogo} alt="" />
+        <Image src="/Sort.svg" alt="" height={24} width={24} />
       </div>
       <div className={expandClassName}>
         {sortCriteria &&

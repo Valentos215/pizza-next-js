@@ -1,6 +1,5 @@
 import { useEffect, memo, useState } from "react";
 
-import filterLogo from "assets/Filter.svg";
 import Show from "shared/components/show/Show";
 import {
   checkboxClasses,
@@ -41,7 +40,7 @@ const Filter = ({ title, specification, setFilter, invert }: IFilterProps) => {
         }}
       >
         <span>{title ? title : "Filter"}</span>
-        <Image src={filterLogo} alt="" />
+        <Image src="/Filter.svg" alt="" height={24} width={24} />
       </div>
       <div className={expandedClassName}>
         <Show condition={!!specification}>

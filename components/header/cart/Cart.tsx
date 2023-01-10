@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import cartLogo from "assets/Cart.svg";
 import { CartContext } from "contexts/cartContext";
 import CartItem from "shared/components/cartItem/CartItem";
 import { totalAmount, totalNumber } from "utils/utils";
@@ -29,7 +28,7 @@ const Cart = () => {
         >
           <div className={s.counter}>
             <span>{totalNumber(cart)}</span>
-            <Image src={cartLogo} alt="" />
+            <Image src="/Cart.svg" alt="" height={16} width={16} />
           </div>
           <Show condition={!cartIsEmpty}>
             <label className={s.amount}>{`${totalAmount(cart)}.00 uah`}</label>
@@ -37,7 +36,7 @@ const Cart = () => {
         </div>
         {
           <Link
-            href={!cartIsEmpty ? "checkout" : "#"}
+            href={!cartIsEmpty ? "checkout" : "/"}
             className={checkoutClassName}
           >
             Checkout
@@ -62,7 +61,7 @@ const Cart = () => {
         <Link href={!cartIsEmpty ? "checkout" : "#"} className={s.viewer}>
           <div className={s.counter}>
             <span>00</span>
-            <Image src={cartLogo} alt="" />
+            <Image src="/Cart.svg" alt="" height={16} width={16} />
           </div>
           <Show condition={!cartIsEmpty}>
             <label className={s.amount}>{`${totalAmount(cart)}.00 uah`}</label>

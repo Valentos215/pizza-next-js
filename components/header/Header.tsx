@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import logo from "assets/Logo.svg";
-import logoText from "assets/Logo_text.svg";
 import Cart from "components/header/cart/Cart";
 import ExpandedMenu from "components/header/expandedMenu/ExpandedMenu";
 import { ExpandContext } from "contexts/expandContext";
@@ -31,8 +29,20 @@ const Header = () => {
         <div className="container">
           <div className={s.header__wrapper}>
             <Link href={ERouterLink.Root} className={s.header__logo}>
-              <Image alt="" src={logo} onClick={() => setExpanded(false)} />
-              <Image alt="" src={logoText} onClick={() => setExpanded(false)} />
+              <Image
+                alt=""
+                src="/Logo.svg"
+                height={34}
+                width={34}
+                onClick={() => setExpanded(false)}
+              />
+              <Image
+                alt=""
+                src="/Logo_text.svg"
+                height={34}
+                width={216}
+                onClick={() => setExpanded(false)}
+              />
             </Link>
             <div className={s.nav}>
               {NAV_MENU.map((item) => (
