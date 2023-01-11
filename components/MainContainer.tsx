@@ -1,7 +1,10 @@
 import Head from "next/head";
 import Header from "components/header/Header";
+import { FC, ReactNode } from "react";
 
-const MainContainer = ({ children }: any) => {
+type TMainContainerProps = { children: ReactNode };
+
+const MainContainer: FC<TMainContainerProps> = ({ children }) => {
   return (
     <>
       <Head>

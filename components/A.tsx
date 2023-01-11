@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { ReactNode } from "react";
 
 interface IAProps {
-  children: any;
+  children: ReactNode;
   href: string;
   classname: string;
 }
