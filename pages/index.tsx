@@ -18,6 +18,8 @@ import {
 import s from "styles/index.module.scss";
 import { useRouter } from "next/router";
 import { range } from "utils/utils";
+import { EApiPath, NAV_MENU } from "constants/index";
+import Head from "next/head";
 
 export default function Home({ pizzas }: { pizzas: IPizza[] }) {
   const [filter, setFilter] = useState<string[] | null>(null);
@@ -61,52 +63,59 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
   });
 
   return (
-    <MainContainer>
-      <div className={scrollClassNames}>
-        <div className="container">
-          <div className={s.wrapper}>
-            <div className={s.filters}>
-              <Filter
-                specification={getFilteredIngredients(pizzas)}
-                setFilter={setFilter}
-                invert={invert}
-              />
-              <Sort sortCriteria={sortCriteria} setSort={setSort} />
-            </div>
-            <Show condition={!!filter}>
-              <div className={s.title}>
-                Pizzas {!!invert ? "without" : "contains"}{" "}
-                {filter && filter.join(", ")}{" "}
-                <span
-                  onClick={() => setInvert(Math.abs(invert - 1))}
-                  className={s.invert}
-                >
-                  Invert
-                </span>
+    <>
+      <Head>
+        <title>{NAV_MENU[0].title}</title>
+      </Head>
+      <MainContainer>
+        <div className={scrollClassNames}>
+          <div className="container">
+            <div className={s.wrapper}>
+              <div className={s.filters}>
+                <Filter
+                  specification={getFilteredIngredients(pizzas)}
+                  setFilter={setFilter}
+                  invert={invert}
+                />
+                <Sort sortCriteria={sortCriteria} setSort={setSort} />
               </div>
-            </Show>
-            <div className={s.pizzaItems}>
-              <Show condition={isLoading}>
-                {range(8).map((i) => (
-                  <PizzaSkeleton key={i} />
-                ))}
+              <Show condition={!!filter}>
+                <div className={s.title}>
+                  Pizzas {!!invert ? "without" : "contains"}{" "}
+                  {filter && filter.join(", ")}{" "}
+                  <span
+                    onClick={() => setInvert(Math.abs(invert - 1))}
+                    className={s.invert}
+                  >
+                    Invert
+                  </span>
+                </div>
               </Show>
-              <Show condition={!!itemsList}>
-                {!!itemsList &&
-                  itemsList.map((pizza: IPizza) => (
-                    <PizzaItem key={pizza.id} pizza={pizza} />
+              <div className={s.pizzaItems}>
+                <Show condition={isLoading}>
+                  {range(8).map((i) => (
+                    <PizzaSkeleton key={i} />
                   ))}
-              </Show>
+                </Show>
+                <Show condition={!!itemsList}>
+                  {!!itemsList &&
+                    itemsList.map((pizza: IPizza) => (
+                      <PizzaItem key={pizza.id} pizza={pizza} />
+                    ))}
+                </Show>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </MainContainer>
+      </MainContainer>
+    </>
   );
 }
 
 export async function getStaticProps() {
-  const response = await axios.get(process.env.REACT_APP_BASE_URL + "pizza");
+  const response = await axios.get(
+    process.env.REACT_APP_BASE_URL + EApiPath.Pizza
+  );
   const pizzas = response.data;
 
   return {

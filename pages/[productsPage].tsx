@@ -14,6 +14,8 @@ import Show from "shared/components/show/Show";
 import s from "styles/products.module.scss";
 import axios from "axios";
 import MainContainer from "components/MainContainer";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 type TProductsProps = { products: IProduct[] };
 
@@ -28,38 +30,45 @@ const Products = ({ products }: TProductsProps) => {
 
   const scrollClassNames = expanded ? "scroll off" : "scroll";
 
+  const { asPath } = useRouter();
+
   return (
-    <MainContainer>
-      <div className={scrollClassNames}>
-        <div className={"container"}>
-          <div className={s.wrapper}>
-            <div className={s.filters}>
-              <Show condition={!!products && !!products[0].category}>
-                <Filter
-                  title="Category"
-                  specification={getFilteredCategories(products)}
-                  setFilter={setFilter}
-                  invert={0}
-                />
+    <>
+      <Head>
+        <title>{asPath.charAt(1).toUpperCase() + asPath.slice(2)}</title>
+      </Head>
+      <MainContainer>
+        <div className={scrollClassNames}>
+          <div className={"container"}>
+            <div className={s.wrapper}>
+              <div className={s.filters}>
+                <Show condition={!!products && !!products[0].category}>
+                  <Filter
+                    title="Category"
+                    specification={getFilteredCategories(products)}
+                    setFilter={setFilter}
+                    invert={0}
+                  />
+                </Show>
+                <div className={s.filters__space}></div>
+                <Sort sortCriteria={sortCriteria} setSort={setSort} />
+              </div>
+              <Show condition={!!filter}>
+                <div className={s.title}>{filter && filter.join(", ")}</div>
               </Show>
-              <div className={s.filters__space}></div>
-              <Sort sortCriteria={sortCriteria} setSort={setSort} />
-            </div>
-            <Show condition={!!filter}>
-              <div className={s.title}>{filter && filter.join(", ")}</div>
-            </Show>
-            <div className={s.pizzaItems}>
-              <Show condition={!!itemsList}>
-                {!!itemsList &&
-                  itemsList.map((product: IProduct) => (
-                    <ProductItem key={product.id} product={product} />
-                  ))}
-              </Show>
+              <div className={s.pizzaItems}>
+                <Show condition={!!itemsList}>
+                  {!!itemsList &&
+                    itemsList.map((product: IProduct) => (
+                      <ProductItem key={product.id} product={product} />
+                    ))}
+                </Show>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </MainContainer>
+      </MainContainer>
+    </>
   );
 };
 

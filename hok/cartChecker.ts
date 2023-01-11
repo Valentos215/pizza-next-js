@@ -3,7 +3,7 @@ import { ReactNode, useContext, useEffect } from "react";
 import { CartContext } from "contexts/cartContext";
 import useLocalStorage from "shared/hooks/useLocalStorage";
 
-type TCartCheckerProps = { children: ReactNode };
+type TCartCheckerProps = { children: any };
 
 const CartChecker = ({ children }: TCartCheckerProps) => {
   const [cart, setCart] = useContext(CartContext);

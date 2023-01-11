@@ -32,3 +32,7 @@ export const PIZZA_WEIGHT = [550, 760, 810];
 export const PIZZA_SIZE_RATE = [1, 1.18, 1.32];
 
 export const PIZZA_CRUST_RATE = [1, 1, 1.18, 1.32];
+
+export enum EApiPath {
+  Pizza = "pizza",
+}
