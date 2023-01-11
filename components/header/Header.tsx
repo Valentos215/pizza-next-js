@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Cart from "components/header/cart/Cart";
 import ExpandedMenu from "components/header/expandedMenu/ExpandedMenu";
 import { ExpandContext } from "contexts/expandContext";
-import { ERouterLink, NAV_MENU } from "constants/index";
+import { NAV_MENU } from "constants/index";
 import s from "components/header/Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,7 +28,7 @@ const Header = () => {
       <div className={s.header}>
         <div className="container">
           <div className={s.header__wrapper}>
-            <Link href={ERouterLink.Root} className={s.header__logo}>
+            <Link href="/" className={s.header__logo}>
               <Image
                 alt=""
                 src="/Logo.svg"

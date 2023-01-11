@@ -1,8 +1,8 @@
 export const NAV_MENU = [
   { title: "Pizza", link: "/" },
-  { title: "Drinks", link: "drinks" },
-  { title: "Sides", link: "sides" },
-  { title: "Dessert", link: "dessert" },
+  { title: "Drinks", link: "/drinks" },
+  { title: "Sides", link: "/sides" },
+  { title: "Dessert", link: "/dessert" },
 ];
 
 export const ERROR_MES = {
@@ -17,15 +17,6 @@ export const ERROR_MES = {
 };
 
 export const NAME_VALIDATION = /^[A-Za-z]+$/;
-
-export enum ERouterLink {
-  Root = "/",
-  Pizza = "/",
-  Drinks = "/drinks",
-  Sides = "/sides",
-  Dessert = "/dessert",
-  Checkout = "/checkout",
-}
 
 export const PIZZA_SIZES = ["Standard size", "Large", "New Yorker"];
 

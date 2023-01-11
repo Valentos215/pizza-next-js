@@ -40,13 +40,7 @@ const ProductItem = ({ product }: IProductItemProps) => {
   return (
     <div className={s.wrapper}>
       <div className={s.image}>
-        <Image
-          className={s.image__main}
-          src={img}
-          alt=""
-          width={960}
-          height={619}
-        />
+        <img className={s.image__main} src={img} alt="" />
         <Show condition={productInCart}>
           <Image
             className={`${s.image__cartLogo} ${s.dark}`}

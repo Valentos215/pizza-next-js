@@ -7,6 +7,7 @@ import Sort from "shared/components/sort/Sort";
 import PizzaItem from "shared/components/productItem/PizzaItem";
 import useLocalStorage from "shared/hooks/useLocalStorage";
 import Show from "shared/components/show/Show";
+import PizzaSkeleton from "shared/components/productItem/PizzaSkeleton";
 import { ExpandContext } from "contexts/expandContext";
 import {
   getFilteredIngredients,
@@ -15,6 +16,8 @@ import {
 } from "utils/pizza.utils";
 
 import s from "styles/index.module.scss";
+import { useRouter } from "next/router";
+import { range } from "utils/utils";
 
 export default function Home({ pizzas }: { pizzas: IPizza[] }) {
   const [filter, setFilter] = useState<string[] | null>(null);
@@ -23,6 +26,7 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
   const [memSort, setMemSort] = useLocalStorage("sort");
   const [sort, setSort] = useState<number>(Number(memSort) || 0);
   const [expanded] = useContext(ExpandContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const sortCriteria = ["Popularity", "Price low-high", "Price high-low"];
 
@@ -37,6 +41,24 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
   useEffect(() => {
     setMemInvert(String(Number(invert) * 1));
   }, [invert, setMemInvert]);
+
+  const router = useRouter();
+  useEffect(() => {
+    const handleStart = (url: string) =>
+      url !== router.asPath && setIsLoading(true);
+    const handleComplete = (url: string) =>
+      url === router.asPath && setIsLoading(false);
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  });
 
   return (
     <MainContainer>
@@ -64,6 +86,11 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
               </div>
             </Show>
             <div className={s.pizzaItems}>
+              <Show condition={isLoading}>
+                {range(8).map((i) => (
+                  <PizzaSkeleton key={i} />
+                ))}
+              </Show>
               <Show condition={!!itemsList}>
                 {!!itemsList &&
                   itemsList.map((pizza: IPizza) => (
