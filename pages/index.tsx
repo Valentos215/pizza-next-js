@@ -118,6 +118,10 @@ export async function getStaticProps() {
   );
   const pizzas = response.data;
 
+  if (!pizzas) {
+    return { notFound: true };
+  }
+
   return {
     props: { pizzas },
   };

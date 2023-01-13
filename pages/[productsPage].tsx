@@ -82,6 +82,10 @@ export async function getServerSideProps({ params }: TGetServerSideProps) {
   );
   const products = response.data;
 
+  if (!products) {
+    return { notFound: true };
+  }
+
   return {
     props: { products },
   };
