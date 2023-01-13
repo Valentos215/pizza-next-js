@@ -6,6 +6,7 @@ import Show from "shared/components/show/Show";
 import s from "./Cart.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Cart = () => {
   const [expanded, setExpanded] = useState(false);
@@ -16,6 +17,8 @@ const Cart = () => {
     ? s.checkout
     : `${s.checkout} ${s.disabled}`;
   const expandClassName = expanded ? `${s.expand} ${s.active}` : s.expand;
+
+  const { asPath } = useRouter();
 
   return (
     <>
@@ -34,14 +37,12 @@ const Cart = () => {
             <label className={s.amount}>{`${totalAmount(cart)}.00 uah`}</label>
           </Show>
         </div>
-        {
-          <Link
-            href={!cartIsEmpty ? "checkout" : "/"}
-            className={checkoutClassName}
-          >
-            Checkout
-          </Link>
-        }
+        <Link
+          href={!cartIsEmpty ? "checkout" : asPath}
+          className={checkoutClassName}
+        >
+          Checkout
+        </Link>
         <Show condition={!cartIsEmpty}>
           <div className={expandClassName}>
             {cart
@@ -58,7 +59,7 @@ const Cart = () => {
         </Show>
       </div>
       <div className={`${s.cart} ${s.small}`}>
-        <Link href={!cartIsEmpty ? "checkout" : "#"} className={s.viewer}>
+        <Link href={!cartIsEmpty ? "checkout" : asPath} className={s.viewer}>
           <div className={s.counter}>
             <span>00</span>
             <Image src="/Cart.svg" alt="" height={16} width={16} />

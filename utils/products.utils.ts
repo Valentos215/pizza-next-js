@@ -27,7 +27,7 @@ export const productsToShow = ({
 
   let filtered: IProduct[];
 
-  if (filter) {
+  if (filter?.length) {
     filtered = products.filter((product: IProduct) =>
       filter.some((cat) => product.category === cat)
     );

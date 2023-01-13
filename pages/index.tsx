@@ -7,7 +7,6 @@ import Sort from "shared/components/sort/Sort";
 import PizzaItem from "shared/components/productItem/PizzaItem";
 import useLocalStorage from "shared/hooks/useLocalStorage";
 import Show from "shared/components/show/Show";
-import PizzaSkeleton from "shared/components/productItem/PizzaSkeleton";
 import { ExpandContext } from "contexts/expandContext";
 import {
   getFilteredIngredients,
@@ -16,19 +15,18 @@ import {
 } from "utils/pizza.utils";
 
 import s from "styles/index.module.scss";
-import { useRouter } from "next/router";
-import { range } from "utils/utils";
 import { EApiPath, NAV_MENU } from "constants/index";
 import Head from "next/head";
 
-export default function Home({ pizzas }: { pizzas: IPizza[] }) {
+type THomeProps = { pizzas: IPizza[]; isLoading: boolean };
+
+export default function Home({ pizzas }: THomeProps) {
   const [filter, setFilter] = useState<string[] | null>(null);
   const [memInvert, setMemInvert] = useLocalStorage("invert");
   const [invert, setInvert] = useState(Number(memInvert) || 0);
   const [memSort, setMemSort] = useLocalStorage("sort");
   const [sort, setSort] = useState<number>(Number(memSort) || 0);
   const [expanded] = useContext(ExpandContext);
-  const [isLoading, setIsLoading] = useState(false);
 
   const sortCriteria = ["Popularity", "Price low-high", "Price high-low"];
 
@@ -44,23 +42,23 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
     setMemInvert(String(Number(invert) * 1));
   }, [invert, setMemInvert]);
 
-  const router = useRouter();
-  useEffect(() => {
-    const handleStart = (url: string) =>
-      url !== router.asPath && setIsLoading(true);
-    const handleComplete = (url: string) =>
-      url === router.asPath && setIsLoading(false);
+  //   const router = useRouter();
+  //   useEffect(() => {
+  //     const handleStart = (url: string) =>
+  //       url !== router.asPath && setIsLoading(true);
+  //     const handleComplete = (url: string) =>
+  //       url === router.asPath && setIsLoading(false);
 
-    router.events.on("routeChangeStart", handleStart);
-    router.events.on("routeChangeComplete", handleComplete);
-    router.events.on("routeChangeError", handleComplete);
+  //     router.events.on("routeChangeStart", handleStart);
+  //     router.events.on("routeChangeComplete", handleComplete);
+  //     router.events.on("routeChangeError", handleComplete);
 
-    return () => {
-      router.events.off("routeChangeStart", handleStart);
-      router.events.off("routeChangeComplete", handleComplete);
-      router.events.off("routeChangeError", handleComplete);
-    };
-  });
+  //     return () => {
+  //       router.events.off("routeChangeStart", handleStart);
+  //       router.events.off("routeChangeComplete", handleComplete);
+  //       router.events.off("routeChangeError", handleComplete);
+  //     };
+  //   });
 
   return (
     <>
@@ -92,11 +90,6 @@ export default function Home({ pizzas }: { pizzas: IPizza[] }) {
                 </div>
               </Show>
               <div className={s.pizzaItems}>
-                <Show condition={isLoading}>
-                  {range(8).map((i) => (
-                    <PizzaSkeleton key={i} />
-                  ))}
-                </Show>
                 <Show condition={!!itemsList}>
                   {!!itemsList &&
                     itemsList.map((pizza: IPizza) => (

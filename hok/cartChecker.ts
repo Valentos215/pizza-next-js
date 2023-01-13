@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import { CartContext } from "contexts/cartContext";
 import useLocalStorage from "shared/hooks/useLocalStorage";

@@ -15,7 +15,7 @@ export default function App() {
   return (
     <MainContainer>
       <h2 style={{ position: "absolute", marginTop: 120, width: "100%" }}>
-        Page not found{" "}
+        Something went wrong
       </h2>
     </MainContainer>
   );

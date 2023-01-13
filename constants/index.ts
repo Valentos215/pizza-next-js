@@ -1,8 +1,8 @@
 export const NAV_MENU = [
-  { title: "Pizza", link: "/" },
-  { title: "Drinks", link: "/drinks" },
-  { title: "Sides", link: "/sides" },
-  { title: "Dessert", link: "/dessert" },
+  { title: "Pizza", link: "/", logo: "/Pizza.svg" },
+  { title: "Drinks", link: "/drinks", logo: "/Drinks.svg" },
+  { title: "Sides", link: "/sides", logo: "/Sides.svg" },
+  { title: "Dessert", link: "/dessert", logo: "/Dessert.svg" },
 ];
 
 export const ERROR_MES = {
