@@ -14,9 +14,8 @@ export const useSearchStreet = ({
   streetSearch,
   setSearchResults,
 }: IUseSearchStreet) => {
-  const apiUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
-  const apiKey =
-    "pk.eyJ1IjoidmFsZW50aW5vczIxNSIsImEiOiJjbDhuYzN5N3gwZXJiM29vYW5vdzJndzNtIn0.sXTtaj_m9upSxo6msqBwRA";
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiKey = process.env.REACT_APP_API_KEY;
   const apiFetchParams = "types=address&limit=5&language=en";
 
   useEffect(() => {

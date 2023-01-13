@@ -42,28 +42,13 @@ export default function Home({ pizzas }: THomeProps) {
     setMemInvert(String(Number(invert) * 1));
   }, [invert, setMemInvert]);
 
-  //   const router = useRouter();
-  //   useEffect(() => {
-  //     const handleStart = (url: string) =>
-  //       url !== router.asPath && setIsLoading(true);
-  //     const handleComplete = (url: string) =>
-  //       url === router.asPath && setIsLoading(false);
-
-  //     router.events.on("routeChangeStart", handleStart);
-  //     router.events.on("routeChangeComplete", handleComplete);
-  //     router.events.on("routeChangeError", handleComplete);
-
-  //     return () => {
-  //       router.events.off("routeChangeStart", handleStart);
-  //       router.events.off("routeChangeComplete", handleComplete);
-  //       router.events.off("routeChangeError", handleComplete);
-  //     };
-  //   });
+  const keywords = pizzas.map((pizza) => pizza.title).join(", ");
 
   return (
     <>
       <Head>
         <title>{NAV_MENU[0].title}</title>
+        <meta name="keywords" content={keywords} />
       </Head>
       <MainContainer>
         <div className={scrollClassNames}>
@@ -106,9 +91,7 @@ export default function Home({ pizzas }: THomeProps) {
 }
 
 export async function getStaticProps() {
-  const response = await axios.get(
-    process.env.REACT_APP_BASE_URL + EApiPath.Pizza
-  );
+  const response = await axios.get(process.env.BASE_URL + EApiPath.Pizza);
   const pizzas = response.data;
 
   if (!pizzas) {

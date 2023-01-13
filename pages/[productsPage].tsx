@@ -32,10 +32,13 @@ const Products = ({ products }: TProductsProps) => {
 
   const { asPath } = useRouter();
 
+  const keywords = products.map((product) => product.title).join(", ");
+
   return (
     <>
       <Head>
         <title>{asPath.charAt(1).toUpperCase() + asPath.slice(2)}</title>
+        <meta name="keywords" content={keywords} />
       </Head>
       <MainContainer>
         <div className={scrollClassNames}>
@@ -77,9 +80,7 @@ export default Products;
 type TGetServerSideProps = { params: { productsPage: string } };
 
 export async function getServerSideProps({ params }: TGetServerSideProps) {
-  const response = await axios.get(
-    process.env.REACT_APP_BASE_URL + params.productsPage
-  );
+  const response = await axios.get(process.env.BASE_URL + params.productsPage);
   const products = response.data;
 
   if (!products) {
