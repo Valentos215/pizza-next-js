@@ -1,0 +1,73 @@
+@import 'styles/global';
+
+.wrapper {
+  flex: 44%;
+  display: flex;
+  flex-direction: column;
+  margin-right: toRem(20);
+  & textarea {
+    width: 100%;
+    line-height: toRem(20);
+    border-radius: toRem(15);
+    border: 1px solid $color-8;
+    padding: toRem(10);
+    font-size: toRem(15);
+    resize: none;
+    margin-bottom: toRem(30);
+  }
+  & h3 {
+    font-size: toRem(18);
+    font-weight: 600;
+    margin-bottom: toRem(30);
+    margin-left: toRem(25);
+  }
+  @media (max-width: toRem(768)) {
+    margin-right: 0;
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: toRem(30);
+  margin-top: toRem(-20);
+  &__input {
+    width: 32.7%;
+    display: flex;
+    flex-direction: column;
+    & span {
+      font-size: toRem(12);
+      height: toRem(20);
+      line-height: toRem(20);
+      font-weight: 600;
+      color: $color-1;
+      margin-left: toRem(12);
+      &.error {
+        color: $color-4;
+      }
+    }
+  }
+  & input {
+    position: relative;
+    line-height: toRem(30);
+    border-radius: toRem(15);
+    border: 1px solid $color-8;
+    padding: 0 toRem(10);
+    &.error {
+      border-color: $color-4;
+    }
+  }
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    &__input {
+      width: 100%;
+    }
+    & input {
+      margin-bottom: toRem(20);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

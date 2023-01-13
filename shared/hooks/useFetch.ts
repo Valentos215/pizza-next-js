@@ -33,7 +33,7 @@ type UseFetchResult = {
 };
 
 const useFetch = (url: string): UseFetchResult => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const baseUrl = "https://63270a7aba4a9c47532f8ff3.mockapi.io/api/v1/";
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<RespType | null>(null);
   const [error, setError] = useState<Error | null>(null);

@@ -1,0 +1,21 @@
+@import "styles/global";
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin-top: toRem(100);
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+.title {
+  position: absolute;
+  width: 100%;
+  top: toRem(100);
+  font-size: toRem(25);
+  line-height: toRem(30);
+  text-align: center;
+  padding: 0 4%;
+}

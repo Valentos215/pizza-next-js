@@ -1,0 +1,36 @@
+@import 'styles/global';
+
+.delivery {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: toRem(30);
+  &__item {
+    width: 49%;
+    height: toRem(50);
+    border-radius: toRem(25);
+    border: 1px solid $color-8;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    &.active {
+      background: $color-11;
+    }
+    &:hover {
+      @media (min-width: 769px) {
+        box-shadow: 0 0 toRem(5) $color-12;
+      }
+    }
+    & img {
+      width: toRem(38);
+    }
+    & span {
+      font-size: toRem(16);
+      font-weight: 600;
+      letter-spacing: toRem(0.5);
+      margin-left: toRem(15);
+    }
+  }
+}

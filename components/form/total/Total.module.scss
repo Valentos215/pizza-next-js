@@ -1,0 +1,57 @@
+@import 'styles/global';
+
+.total {
+  position: relative;
+  align-self: center;
+  & h4 {
+    font-size: toRem(20);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: toRem(20);
+  }
+  & p {
+    font-size: toRem(22);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: toRem(20);
+    & span {
+      font-size: toRem(14);
+    }
+  }
+}
+.button {
+  text-align: center;
+  font-size: toRem(16);
+  font-weight: 600;
+  letter-spacing: toRem(0.5);
+  width: toRem(200);
+  height: toRem(50);
+  border-radius: toRem(15);
+  background-color: $color-4;
+  line-height: toRem(48);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: toRem(30);
+  &:hover {
+    @media (min-width: 769px) {
+      background-color: $color-5;
+    }
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &.disabled {
+    &:hover {
+      @media (min-width: 769px) {
+        background-color: $color-3;
+        cursor: no-drop;
+      }
+    }
+  }
+}
+.preloader {
+  position: absolute;
+  width: 100%;
+  bottom: toRem(190);
+}

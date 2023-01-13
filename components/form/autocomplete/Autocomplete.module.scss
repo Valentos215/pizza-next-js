@@ -1,0 +1,88 @@
+@import 'styles/global';
+
+.wrapper {
+  position: relative;
+  margin-top: toRem(-20);
+  & p {
+    font-size: toRem(12);
+    font-weight: 600;
+    line-height: toRem(20);
+    padding-left: toRem(12);
+    color: $color-1;
+    &.error {
+      color: $color-4;
+    }
+  }
+  & input {
+    width: 100%;
+    position: relative;
+    line-height: toRem(30);
+    border-radius: toRem(15);
+    border: 1px solid $color-8;
+    padding: 0 toRem(10);
+    font-size: toRem(15);
+    margin-bottom: toRem(25);
+    &.error {
+      border-color: $color-4;
+    }
+  }
+  & span {
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      right: toRem(20);
+      top: toRem(31);
+      height: toRem(10);
+      width: toRem(2);
+      background: $color-6;
+      transform: rotate(45deg);
+      transition: all 0.2s;
+    }
+    &:after {
+      transform: rotate(-45deg);
+      right: toRem(27);
+    }
+  }
+  &.active {
+    & span {
+      &:before {
+        transform: rotate(-45deg);
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+.expand {
+  width: 100%;
+  position: absolute;
+  top: toRem(55);
+  z-index: 3;
+  background: #fff;
+  border-radius: toRem(15);
+  overflow: auto;
+  border: 1px solid $color-8;
+  transition: all 0.3s;
+  height: 0rem;
+  opacity: 0;
+  &__option {
+    font-size: toRem(16);
+    font-weight: 500;
+    color: $color-10;
+    line-height: toRem(29);
+    border-bottom: 1px solid $color-8;
+    padding: 0 toRem(20);
+    cursor: pointer;
+    &:hover {
+      @media (min-width: 769px) {
+        background: $color-9;
+      }
+    }
+  }
+  &.active {
+    height: toRem(152);
+    opacity: 1;
+  }
+}
