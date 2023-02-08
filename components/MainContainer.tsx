@@ -35,6 +35,7 @@ const MainContainer: FC<TMainContainerProps> = ({ children }) => {
         <meta name="description" content="Pizzeria" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="keywords" content="my-pizza-app, next.js-pizzeria" />
       </Head>
       <Header></Header>
       <Show condition={isLoading}>
