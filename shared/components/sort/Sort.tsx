@@ -1,7 +1,7 @@
-import { useState, memo } from "react";
+import { useState } from "react";
+import Image from "next/image";
 
 import s from "./Sort.module.scss";
-import Image from "next/image";
 
 interface ISortProps {
   sortCriteria: string[];
@@ -25,7 +25,7 @@ const Sort = ({ sortCriteria, setSort }: ISortProps) => {
     <div className={s.sort} tabIndex={3} onBlur={() => setExpanded(false)}>
       <div className={s.button} onClick={() => setExpanded(!expanded)}>
         <span>Sort</span>
-        <Image src="/Sort.svg" alt="" height={24} width={24} />
+        <Image src="/Sort.svg" alt="Sort logo" height={24} width={24} />
       </div>
       <div className={expandClassName}>
         {sortCriteria &&

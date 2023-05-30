@@ -24,7 +24,7 @@ const Order = () => {
               className={s.item}
             >
               <div className={s.image}>
-                <img src={item.img} alt=""></img>
+                <img src={item.img} alt={item.title}></img>
               </div>
               <div className={s.body}>
                 <CartItem item={item} handle={true} />

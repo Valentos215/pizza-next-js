@@ -1,4 +1,5 @@
-import { useEffect, memo, useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import Show from "shared/components/show/Show";
 import {
@@ -7,7 +8,6 @@ import {
 } from "shared/components/filter/utils/filter.utils";
 
 import s from "shared/components/filter/Filter.module.scss";
-import Image from "next/image";
 
 interface IFilterProps {
   title?: string;
@@ -40,7 +40,7 @@ const Filter = ({ title, specification, setFilter, invert }: IFilterProps) => {
         }}
       >
         <span>{title ? title : "Filter"}</span>
-        <Image src="/Filter.svg" alt="" height={24} width={24} />
+        <Image src="/Filter.svg" alt="Filter logo" height={24} width={24} />
       </div>
       <div className={expandedClassName}>
         <Show condition={!!specification}>

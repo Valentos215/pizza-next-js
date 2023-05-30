@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import s from "components/form/deliverySet/DeliverySet.module.scss";
 
 interface IDeliverySetProps {
@@ -17,11 +18,11 @@ const DeliverySet = ({ delivery, setDelivery }: IDeliverySetProps) => {
   return (
     <div className={s.delivery}>
       <div className={deliveryClassName} onClick={() => setDelivery(true)}>
-        <Image src="/Delivery.svg" alt="" width={38} height={38} />
+        <Image src="/Delivery.svg" alt="Delivery logo" width={38} height={38} />
         <span>Delivery</span>
       </div>
       <div className={carryOutClassName} onClick={() => setDelivery(false)}>
-        <Image src="/CarryOut.svg" alt="" width={38} height={38} />
+        <Image src="/CarryOut.svg" alt="CarryOut logo" width={38} height={38} />
         <span>Carry out</span>
       </div>
     </div>

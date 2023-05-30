@@ -27,6 +27,13 @@ export const PIZZA_CRUSTS = [
   "Hot-Dog Crust",
 ];
 
+export const PIZZA_SORT_CRITERIA = [
+  "Popularity",
+  "Price low-high",
+  "Price high-low",
+];
+export const PRODUCTS_SORT_CRITERIA = ["Price low-high", "Price high-low"];
+
 export const PIZZA_WEIGHT = [550, 760, 810];
 
 export const PIZZA_SIZE_RATE = [1, 1.18, 1.32];

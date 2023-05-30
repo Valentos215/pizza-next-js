@@ -1,12 +1,14 @@
 import { useState, useContext } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+
 import { CartContext } from "contexts/cartContext";
 import CartItem from "shared/components/cartItem/CartItem";
 import { totalAmount, totalNumber } from "utils/utils";
 import Show from "shared/components/show/Show";
+
 import s from "./Cart.module.scss";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 const Cart = () => {
   const [expanded, setExpanded] = useState(false);
@@ -31,7 +33,7 @@ const Cart = () => {
         >
           <div className={s.counter}>
             <span>{totalNumber(cart)}</span>
-            <Image src="/Cart.svg" alt="" height={16} width={16} />
+            <Image src="/Cart.svg" alt="Cart logo" height={16} width={16} />
           </div>
           <Show condition={!cartIsEmpty}>
             <label className={s.amount}>{`${totalAmount(cart)}.00 uah`}</label>
@@ -62,7 +64,7 @@ const Cart = () => {
         <Link href={!cartIsEmpty ? "checkout" : asPath} className={s.viewer}>
           <div className={s.counter}>
             <span>00</span>
-            <Image src="/Cart.svg" alt="" height={16} width={16} />
+            <Image src="/Cart.svg" alt="Cart logo" height={16} width={16} />
           </div>
           <Show condition={!cartIsEmpty}>
             <label className={s.amount}>{`${totalAmount(cart)}.00 uah`}</label>

@@ -1,14 +1,14 @@
 import { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import { CartContext } from "contexts/cartContext";
 import { ExpandContext } from "contexts/expandContext";
 import Form from "components/form/Form";
 import Order from "components/order/Order";
+import Show from "shared/components/show/Show";
 
 import s from "styles/Checkout.module.scss";
-import MainContainer from "components/MainContainer";
-import Show from "shared/components/show/Show";
 
 const Checkout = () => {
   const [checkoutSuccess, setCheckoutSuccess] = useState(false);
@@ -30,7 +30,10 @@ const Checkout = () => {
   }, [checkoutSuccess, router]);
 
   return (
-    <MainContainer>
+    <>
+      <Head>
+        <title>Checkout</title>
+      </Head>
       {
         <Show condition={checkoutSuccess}>
           <div className={s.title}>
@@ -46,14 +49,14 @@ const Checkout = () => {
       <Show condition={!checkoutSuccess && !!cart.length}>
         <div className={scrollClassNames}>
           <div className={"container"}>
-            <div className={s.wrapper}>
+            <main className={s.wrapper}>
               <Order />
               <Form setCheckoutSuccess={setCheckoutSuccess} />
-            </div>
+            </main>
           </div>
         </div>
       </Show>
-    </MainContainer>
+    </>
   );
 };
 

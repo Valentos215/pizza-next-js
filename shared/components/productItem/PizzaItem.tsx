@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import Image from "next/image";
 
 import { CartContext } from "contexts/cartContext";
 import Show from "shared/components/show/Show";
@@ -12,7 +13,6 @@ import {
 } from "shared/components/productItem/utils/pizzaItem.utils";
 
 import s from "shared/components/productItem/ProductItem.module.scss";
-import Image from "next/image";
 
 interface IPizzaItemProps {
   pizza: IPizza;
@@ -70,7 +70,7 @@ const PizzaItem = ({ pizza }: IPizzaItemProps) => {
         <Image
           className={s.image__main}
           src={img}
-          alt=""
+          alt={title}
           width={960}
           height={619}
         />
@@ -78,7 +78,7 @@ const PizzaItem = ({ pizza }: IPizzaItemProps) => {
           <Image
             className={s.image__cartLogo}
             src="/Cart.svg"
-            alt=""
+            alt="Cart logo"
             height={18}
             width={18}
           />

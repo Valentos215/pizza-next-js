@@ -1,12 +1,14 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Link from "next/link";
+
 import Cart from "components/header/cart/Cart";
 import ExpandedMenu from "components/header/expandedMenu/ExpandedMenu";
 import { ExpandContext } from "contexts/expandContext";
 import { NAV_MENU } from "constants/index";
+
 import s from "components/header/Header.module.scss";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 const Header = () => {
   const [expanded, setExpanded] = useContext(ExpandContext);
@@ -25,26 +27,26 @@ const Header = () => {
   return (
     <>
       <ExpandedMenu expanded={expanded} setExpanded={setExpanded} />
-      <div className={s.header}>
+      <header className={s.header}>
         <div className="container">
           <div className={s.header__wrapper}>
             <Link href="/" className={s.header__logo}>
               <Image
-                alt=""
+                alt="Logo"
                 src="/Logo.svg"
                 height={34}
                 width={34}
                 onClick={() => setExpanded(false)}
               />
               <Image
-                alt=""
+                alt="Logo"
                 src="/Logo_text.svg"
                 height={34}
                 width={216}
                 onClick={() => setExpanded(false)}
               />
             </Link>
-            <div className={s.nav}>
+            <nav className={s.nav}>
               {NAV_MENU.map((item) => (
                 <Link
                   key={item.title}
@@ -54,7 +56,7 @@ const Header = () => {
                   {item.title}
                 </Link>
               ))}
-            </div>
+            </nav>
             <div className={s.right_column}>
               <div onClick={() => setExpanded(false)}>
                 <Cart />
@@ -69,7 +71,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useContext, memo } from "react";
+import { useContext } from "react";
 
 import { CartContext } from "contexts/cartContext";
 import Show from "shared/components/show/Show";

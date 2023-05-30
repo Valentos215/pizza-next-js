@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
+import Head from "next/head";
 import axios from "axios";
 
-import MainContainer from "components/MainContainer";
 import Filter from "shared/components/filter/Filter";
 import Sort from "shared/components/sort/Sort";
 import PizzaItem from "shared/components/productItem/PizzaItem";
@@ -13,10 +13,9 @@ import {
   IPizza,
   pizzasToShow,
 } from "utils/pizza.utils";
+import { EApiPath, NAV_MENU, PIZZA_SORT_CRITERIA } from "constants/index";
 
 import s from "styles/index.module.scss";
-import { EApiPath, NAV_MENU } from "constants/index";
-import Head from "next/head";
 
 type THomeProps = { pizzas: IPizza[]; isLoading: boolean };
 
@@ -27,8 +26,6 @@ export default function Home({ pizzas }: THomeProps) {
   const [memSort, setMemSort] = useLocalStorage("sort");
   const [sort, setSort] = useState<number>(Number(memSort) || 0);
   const [expanded] = useContext(ExpandContext);
-
-  const sortCriteria = ["Popularity", "Price low-high", "Price high-low"];
 
   const itemsList = pizzasToShow({ pizzas, filter, sort, invert });
 
@@ -50,42 +47,40 @@ export default function Home({ pizzas }: THomeProps) {
         <title>{NAV_MENU[0].title}</title>
         <meta name="keywords" content={keywords} />
       </Head>
-      <MainContainer>
-        <div className={scrollClassNames}>
-          <div className="container">
-            <div className={s.wrapper}>
-              <div className={s.filters}>
-                <Filter
-                  specification={getFilteredIngredients(pizzas)}
-                  setFilter={setFilter}
-                  invert={invert}
-                />
-                <Sort sortCriteria={sortCriteria} setSort={setSort} />
+      <div className={scrollClassNames}>
+        <div className="container">
+          <div className={s.wrapper}>
+            <div className={s.filters}>
+              <Filter
+                specification={getFilteredIngredients(pizzas)}
+                setFilter={setFilter}
+                invert={invert}
+              />
+              <Sort sortCriteria={PIZZA_SORT_CRITERIA} setSort={setSort} />
+            </div>
+            <Show condition={!!filter}>
+              <div className={s.title}>
+                Pizzas {!!invert ? "without" : "contains"}{" "}
+                {filter && filter.join(", ")}{" "}
+                <span
+                  onClick={() => setInvert(Math.abs(invert - 1))}
+                  className={s.invert}
+                >
+                  Invert
+                </span>
               </div>
-              <Show condition={!!filter}>
-                <div className={s.title}>
-                  Pizzas {!!invert ? "without" : "contains"}{" "}
-                  {filter && filter.join(", ")}{" "}
-                  <span
-                    onClick={() => setInvert(Math.abs(invert - 1))}
-                    className={s.invert}
-                  >
-                    Invert
-                  </span>
-                </div>
+            </Show>
+            <div className={s.pizzaItems}>
+              <Show condition={!!itemsList}>
+                {!!itemsList &&
+                  itemsList.map((pizza: IPizza) => (
+                    <PizzaItem key={pizza.id} pizza={pizza} />
+                  ))}
               </Show>
-              <div className={s.pizzaItems}>
-                <Show condition={!!itemsList}>
-                  {!!itemsList &&
-                    itemsList.map((pizza: IPizza) => (
-                      <PizzaItem key={pizza.id} pizza={pizza} />
-                    ))}
-                </Show>
-              </div>
             </div>
           </div>
         </div>
-      </MainContainer>
+      </div>
     </>
   );
 }

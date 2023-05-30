@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import Image from "next/image";
 
 import { CartContext } from "contexts/cartContext";
 import Show from "shared/components/show/Show";
@@ -8,7 +9,7 @@ import { IProduct } from "utils/products.utils";
 import { getProductCount } from "shared/components/productItem/utils/productItem.utils";
 
 import s from "shared/components/productItem/ProductItem.module.scss";
-import Image from "next/image";
+
 interface IProductItemProps {
   product: IProduct;
 }
@@ -40,12 +41,12 @@ const ProductItem = ({ product }: IProductItemProps) => {
   return (
     <div className={s.wrapper}>
       <div className={s.image}>
-        <img className={s.image__main} src={img} alt="" />
+        <img className={s.image__main} src={img} alt={title} />
         <Show condition={productInCart}>
           <Image
             className={`${s.image__cartLogo} ${s.dark}`}
             src="/Cart.svg"
-            alt=""
+            alt="Cart logo"
             height={18}
             width={18}
           />

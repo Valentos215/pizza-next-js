@@ -1,13 +1,14 @@
+import { useRouter } from "next/router";
 import Head from "next/head";
+
 import Header from "components/header/Header";
 import { FC, ReactNode, useEffect, useState } from "react";
 import Show from "shared/components/show/Show";
 import Preloader from "shared/components/preloader/Preloader";
-import { useRouter } from "next/router";
 
-type TMainContainerProps = { children: ReactNode };
+type TLayoutProps = { children: ReactNode };
 
-const MainContainer: FC<TMainContainerProps> = ({ children }) => {
+const Layout: FC<TLayoutProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -50,4 +51,4 @@ const MainContainer: FC<TMainContainerProps> = ({ children }) => {
   );
 };
 
-export default MainContainer;
+export default Layout;
