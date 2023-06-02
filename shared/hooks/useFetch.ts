@@ -50,7 +50,10 @@ const useFetch = (url: string): UseFetchResult => {
     if (!isLoading) {
       return;
     }
-    axios(baseUrl + url, requestOptions)
+    axios(
+      "https://63270a7aba4a9c47532f8ff3.mockapi.io/api/v1/" + url,
+      requestOptions
+    )
       .then((res) => {
         if (!skipGetResponseAfterDestroy) {
           setIsLoading(false);
