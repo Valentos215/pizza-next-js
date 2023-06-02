@@ -87,7 +87,7 @@ export default function Home({ pizzas }: THomeProps) {
 
 export async function getStaticProps() {
   const response = await axios.get(
-    "https://63270a7aba4a9c47532f8ff3.mockapi.io/api/v1/" + EApiPath.Pizza
+    process.env.REACT_APP_BASE_URL + EApiPath.Pizza
   );
   const pizzas = response.data;
 

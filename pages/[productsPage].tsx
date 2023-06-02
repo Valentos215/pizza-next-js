@@ -77,7 +77,7 @@ type TGetServerSideProps = { params: { productsPage: string } };
 
 export async function getServerSideProps({ params }: TGetServerSideProps) {
   const response = await axios.get(
-    "https://63270a7aba4a9c47532f8ff3.mockapi.io/api/v1/" + params.productsPage
+    process.env.REACT_APP_BASE_URL + params.productsPage
   );
   const products = response.data;
 
